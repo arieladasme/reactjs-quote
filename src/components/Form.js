@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import { getYearDifference } from './../helper'
 
 const Field = styled.div`
   display: flex;
@@ -77,6 +78,15 @@ const Form = () => {
     }
     saveError(false)
   }
+
+  // Base 2000
+  let result = 2000
+
+  // Get difference of years
+  const differenceYear = getYearDifference(year)
+
+  // Substract 3%
+  result -= (differenceYear * 3 * result) / 100
 
   return (
     <form onSubmit={quoteInsurance}>
