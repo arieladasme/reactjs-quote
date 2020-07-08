@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Header from './components/Header'
+import Form from './components/Form'
 
 const Container = styled.div`
   max-width: 600px;
@@ -16,7 +17,9 @@ function App() {
   return (
     <Container>
       <Header title="Cotizador de Seguros" />
-      <FormContainer></FormContainer>
+      <FormContainer>
+        <Form />
+      </FormContainer>
     </Container>
   )
 }
