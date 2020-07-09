@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { getYearDifference } from './../helper'
+import { getYearDifference, calculateBrand } from './../helper'
 
 const Field = styled.div`
   display: flex;
@@ -87,6 +87,11 @@ const Form = () => {
 
   // Substract 3%
   result -= (differenceYear * 3 * result) / 100
+
+  // American 15% European 30% Asian 5%
+  result = calculateBrand(brand) * result
+
+  console.log(result)
 
   return (
     <form onSubmit={quoteInsurance}>
