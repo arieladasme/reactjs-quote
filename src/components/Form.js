@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 import { getYearDifference, calculateBrand, getPlan } from './../helper'
 
 const Field = styled.div`
@@ -101,7 +102,7 @@ const Form = ({ saveSummary, saveLoading }) => {
       // Delete spinner
       saveLoading(false)
       saveSummary({
-        quotation: result,
+        quotation: Number(result),
         data,
       })
     }, 1600)
@@ -165,6 +166,11 @@ const Form = ({ saveSummary, saveLoading }) => {
       <Button type="submit">Cotizar</Button>
     </form>
   )
+}
+
+Form.propTypes = {
+  saveSummary: PropTypes.func.isRequired,
+  saveLoading: PropTypes.func.isRequired,
 }
 
 export default Form
