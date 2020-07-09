@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 const ResultContainer = styled.div`
   text-align: center;
@@ -21,7 +22,15 @@ const TextContainer = styled.p`
 const Result = ({ quotation }) => {
   return (
     <ResultContainer>
-      <TextContainer>Total: ${quotation}</TextContainer>
+      <TransitionGroup component="p" className="result">
+        <CSSTransition
+          classNames="result"
+          key={quotation}
+          timeout={{ enter: 500, exit: 500 }}
+        >
+          <TextContainer>Total: ${quotation}</TextContainer>
+        </CSSTransition>
+      </TransitionGroup>
     </ResultContainer>
   )
 }

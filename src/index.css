@@ -20,13 +20,13 @@ span.resultado {
   position: relative;
   width: 100%;
 }
-.resultado-enter {
+.result-enter {
   transition: 0.5s;
 }
-.resultado-enter.resultado-enter-active {
+.result-enter.result-enter-active {
   transform: translateY(0%);
 }
-.resultado-exit {
+.result-exit {
   transform: translateY(0);
   transition: 0.5s;
   position: absolute;
@@ -34,7 +34,7 @@ span.resultado {
   bottom: 0;
   right: 0;
 }
-.resultado-exit-active {
+.result-exit-active {
   opacity: 0;
   transform: translateY(-10%);
 }
