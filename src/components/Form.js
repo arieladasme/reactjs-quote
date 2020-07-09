@@ -49,7 +49,7 @@ const Error = styled.div`
   border-bottom: 2rem;
 `
 
-const Form = () => {
+const Form = ({ saveSummary }) => {
   const [data, saveData] = useState({
     brand: '',
     year: '',
@@ -77,24 +77,28 @@ const Form = () => {
       return
     }
     saveError(false)
+
+    // Base 2000
+    let result = 2000
+
+    // Get difference of years
+    const differenceYear = getYearDifference(year)
+
+    // Substract 3%
+    result -= (differenceYear * 3 * result) / 100
+
+    // American 15% European 30% Asian 5%
+    result = calculateBrand(brand) * result
+
+    // Plan: Basic 20% - Full 50%
+    const increasePlan = getPlan(plan)
+    result = parseFloat(increasePlan * result).toFixed(2)
+
+    saveSummary({
+      quotation: result,
+      data,
+    })
   }
-
-  // Base 2000
-  let result = 2000
-
-  // Get difference of years
-  const differenceYear = getYearDifference(year)
-
-  // Substract 3%
-  result -= (differenceYear * 3 * result) / 100
-
-  // American 15% European 30% Asian 5%
-  result = calculateBrand(brand) * result
-
-  // Plan: Basic 20% - Full 50%
-  const increasePlan = getPlan(plan)
-  result = parseFloat(increasePlan * result).toFixed(2)
-  console.log(result)
 
   return (
     <form onSubmit={quoteInsurance}>
@@ -107,9 +111,9 @@ const Form = () => {
         <Label>Marca</Label>
         <Select name="brand" value={brand} onChange={getData}>
           <option value="">-- Seleccione --</option>
-          <option value="american">Americano</option>
-          <option value="european">Europeo</option>
-          <option value="asian">Asiatico</option>
+          <option value="american">American</option>
+          <option value="european">European</option>
+          <option value="asian">Asian</option>
         </Select>
       </Field>
 
@@ -140,7 +144,7 @@ const Form = () => {
           checked={plan === 'basic'}
           onChange={getData}
         />
-        Basico
+        Basic
         <InputRadio
           type="radio"
           name="plan"
@@ -148,7 +152,7 @@ const Form = () => {
           checked={plan === 'full'}
           onChange={getData}
         />
-        Completo
+        Full
       </Field>
 
       <Button type="submit">Cotizar</Button>
