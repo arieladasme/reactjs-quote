@@ -22,3 +22,7 @@ export function calculateBrand(brand) {
 
   return i
 }
+
+export function getPlan(plan) {
+  return plan === 'basic' ? 1.2 : 1.5
+}

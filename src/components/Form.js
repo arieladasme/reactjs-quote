@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { getYearDifference, calculateBrand } from './../helper'
+import { getYearDifference, calculateBrand, getPlan } from './../helper'
 
 const Field = styled.div`
   display: flex;
@@ -91,6 +91,9 @@ const Form = () => {
   // American 15% European 30% Asian 5%
   result = calculateBrand(brand) * result
 
+  // Plan: Basic 20% - Full 50%
+  const increasePlan = getPlan(plan)
+  result = parseFloat(increasePlan * result).toFixed(2)
   console.log(result)
 
   return (
