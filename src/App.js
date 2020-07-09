@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import Header from './components/Header'
 import Form from './components/Form'
 import Summary from './components/Summary'
+import Result from './components/Result'
 
 const Container = styled.div`
   max-width: 600px;
@@ -16,7 +17,7 @@ const FormContainer = styled.div`
 
 function App() {
   const [summary, saveSummary] = useState({})
-  const { data } = summary
+  const { quotation, data } = summary
 
   return (
     <Container>
@@ -24,6 +25,7 @@ function App() {
       <FormContainer>
         <Form saveSummary={saveSummary} />
         {data ? <Summary data={data} /> : null}
+        {quotation ? <Result quotation={quotation} /> : null}
       </FormContainer>
     </Container>
   )
