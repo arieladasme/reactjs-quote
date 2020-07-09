@@ -49,7 +49,7 @@ const Error = styled.div`
   border-bottom: 2rem;
 `
 
-const Form = ({ saveSummary }) => {
+const Form = ({ saveSummary, saveLoading }) => {
   const [data, saveData] = useState({
     brand: '',
     year: '',
@@ -94,10 +94,17 @@ const Form = ({ saveSummary }) => {
     const increasePlan = getPlan(plan)
     result = parseFloat(increasePlan * result).toFixed(2)
 
-    saveSummary({
-      quotation: result,
-      data,
-    })
+    // Show spinner
+    saveLoading(true)
+
+    setTimeout(() => {
+      // Delete spinner
+      saveLoading(false)
+      saveSummary({
+        quotation: result,
+        data,
+      })
+    }, 1600)
   }
 
   return (
